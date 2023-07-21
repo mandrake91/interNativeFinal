@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, ScrollView, View, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { Input, Button } from 'react-native-elements';
-import { MapView, Marker } from 'expo';
+import MapView, { Marker } from 'react-native-maps';
 import { Picker } from '@react-native-picker/picker';
 import * as ImagePicker from 'expo-image-picker';
 import { format } from 'date-fns';
+import * as Location from 'expo-location'; 
 
-export default function Informes() {
+export default function InformeScreen() {
   const [selectedType, setSelectedType] = useState('');
   const [location, setLocation] = useState(null);
   const [date, setDate] = useState(new Date());
@@ -110,8 +111,8 @@ export default function Informes() {
             <Text style={styles.photoButtonText}>Seleccionar Foto</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.photoButton} onPress={handleTakePhoto}>
-          <Text style={styles.photoButtonText}>Tomar Foto</Text>
-        </TouchableOpacity>
+            <Text style={styles.photoButtonText}>Tomar Foto</Text>
+          </TouchableOpacity>
         </View>
 
         <Text style={styles.label}>Descripción:</Text>

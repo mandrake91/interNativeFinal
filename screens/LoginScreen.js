@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, TouchableOpacity, StyleSheet, Text } from 'react-native';
 
-const LoginScreen = ({ onLogin }) => {
+const LoginScreen = ({ onLogin, navigation }) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -12,6 +12,15 @@ const LoginScreen = ({ onLogin }) => {
     // Llamar a la función onLogin pasando el usuario como parámetro
     onLogin(user);
   };
+
+  const handleRegister = () => {
+    navigation.navigate('Registro'); // Redirigir a la pantalla RegistroScreen
+  };
+
+  const handleRecover = () => {
+    navigation.navigate('Recuperar Contraseña'); // Redirigir a la pantalla RecuperarPasswordScreen
+  };
+
 
   return (
     <View style={styles.container}>
@@ -29,6 +38,12 @@ const LoginScreen = ({ onLogin }) => {
         style={styles.input}
       />
       <Button title="Iniciar Sesión" onPress={handleLogin} />
+      <TouchableOpacity onPress={handleRegister}>
+        <Text style={styles.registerLink}>Registrarse</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleRecover}>
+        <Text style={styles.registerLink}>Recuperar Contraseña</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -47,6 +62,11 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     marginBottom: 10,
     paddingHorizontal: 10,
+  },
+  registerLink: {
+    marginTop: 10,
+    color: 'blue', // Color del hipervínculo
+    textDecorationLine: 'underline', // Subrayado para indicar que es un enlace
   },
 });
 
