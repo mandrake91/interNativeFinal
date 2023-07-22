@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput, Button, TouchableOpacity, StyleSheet, Text } from 'react-native';
 
-const LoginScreen = ({ onLogin, navigation }) => {
+const LoginScreen = ({ navigation, route }) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -10,8 +10,9 @@ const LoginScreen = ({ onLogin, navigation }) => {
     const user = { name: 'John Doe', email: 'john@example.com' };
 
     // Llamar a la función onLogin pasando el usuario como parámetro
-    onLogin(user);
+    route.params.handleLogin(user);
   };
+
 
   const handleRegister = () => {
     navigation.navigate('Registro'); // Redirigir a la pantalla RegistroScreen
@@ -39,10 +40,10 @@ const LoginScreen = ({ onLogin, navigation }) => {
       />
       <Button title="Iniciar Sesión" onPress={handleLogin} />
       <TouchableOpacity onPress={handleRegister}>
-        <Text style={styles.registerLink}>Registrarse</Text>
+        <Text style={styles.registerLink}>Registrate si no tenes cuenta</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleRecover}>
-        <Text style={styles.registerLink}>Recuperar Contraseña</Text>
+        <Text style={styles.registerLink}>Olvidaste tu Contraseña?</Text>
       </TouchableOpacity>
     </View>
   );

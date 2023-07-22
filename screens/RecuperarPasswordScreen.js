@@ -76,6 +76,20 @@ export default function RecuperarPasswordScreen() {
         errorMessage={errorRepeatPassword}
         value={formData.repeatPassword}
       />
+      <Text style={styles.label}>Pregunta de Seguridad:</Text>
+        <Picker
+          selectedValue={selectedType}
+          onValueChange={(itemValue) => setSelectedType(itemValue)}
+          style={styles.picker}
+        >
+          <Picker.Item label="Tipo 1" value="tipo1" />
+          <Picker.Item label="Tipo 2" value="tipo2" />
+          <Picker.Item label="Tipo 3" value="tipo3" />
+        </Picker>
+        <Input
+        placeholder="Respuesta"
+        containerStyle={styles.input}
+      />
       <Button
         title="Restablecer Contraseña"
         containerStyle={styles.btnContainer}
@@ -96,6 +110,14 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     marginBottom: 10,
+  },
+  picker: {
+    marginBottom: 20,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    paddingHorizontal: 10,
   },
   btnContainer: {
     marginTop: 20,
