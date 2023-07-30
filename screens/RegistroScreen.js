@@ -17,7 +17,7 @@ export default function RegisterScreen() {
         setFormData({...formData, [type]: e.nativeEvent.text})  //el type en corchetes significa que es dinamico y el valor que nos devuelva el texto esta en e.nativeEvent.text
     }
 
-  /*  const doRegisterUser = async() => {
+    const doRegisterUser = async() => {
         if(!validateData()){
             return;
         }
@@ -54,7 +54,7 @@ export default function RegisterScreen() {
         }
         return isValid
     }
-*/
+
   return (
     <View style={styles.container}>
     <View style={styles.form}>
@@ -127,11 +127,11 @@ export default function RegisterScreen() {
         defaultValue={formData.confirm}
       />
       <Button
-        title="Registrar Nuevo Usuario" 
-        containerStyle={styles.btnContainer}
-        buttonStyle={styles.btn}
-        onPress={() => doRegisterUser()}
-      />     
+          title="Registrar Nuevo Usuario"
+          containerStyle={styles.btnContainer}
+          buttonStyle={styles.btn}
+          onPress={() => doRegisterUser()}
+        />  
     </View>
    </View>
   )

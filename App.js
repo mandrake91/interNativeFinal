@@ -1,75 +1,83 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; // Cambiamos a createBottomTabNavigator
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LoginScreen from './screens/LoginScreen';
+import { AuthProvider } from './screens/AuthProvider';
 import NoticiasScreen from './screens/NoticiasScreen';
 import InformeScreen from './screens/InformeScreen';
 import PerfilScreen from './screens/PerfilScreen';
 import RegistroScreen from './screens/RegistroScreen';
 import RecuperarPasswordScreen from './screens/RecuperarPasswordScreen';
-import { NewsTabIcon, InformesTabIcon, PerfilTabIcon } from './screens/TabBarIcons';
+import EmergenciaScreen from './screens/EmergenciaScreen';
+import { NewsTabIcon, InformesTabIcon, PerfilTabIcon, EmergenciaTabIcon } from './screens/TabBarIcons';
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator(); 
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogin = () => {
+  const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
 
-
-  // Si el usuario no ha iniciado sesión, muestra el LoginScreen
   return (
     <NavigationContainer>
-      {isLoggedIn ? (
-        <Tab.Navigator>
-        {/* NoticiasScreen dentro de la pestaña */}
-        <Tab.Screen
-          name="Noticias"
-          component={NoticiasScreen}
-          options={{
-            tabBarIcon: NewsTabIcon,
-          }}
-        />
-        {/* InformeScreen dentro de la pestaña */}
-        <Tab.Screen
-          name="Informes"
-          component={InformeScreen}
-          options={{
-            tabBarIcon: InformesTabIcon,
-          }}
-        />
-        {/* PerfilScreen dentro de la pestaña */}
-        <Tab.Screen
-          name="Perfil"
-          component={PerfilScreen}
-          options={{
-            tabBarIcon: PerfilTabIcon,
-          }}
-        />
-      </Tab.Navigator>
-      ) : (
-        <Stack.Navigator>
-          <Stack.Screen
+      <AuthProvider>
+        {isLoggedIn ? (
+          <Tab.Navigator>
+            <Tab.Screen
+              name="Noticias"
+              component={NoticiasScreen}
+              options={{
+                tabBarIcon: NewsTabIcon,
+              }}
+            />
+            <Tab.Screen
+              name="Informes"
+              component={InformeScreen}
+              options={{
+                tabBarIcon: InformesTabIcon,
+              }}
+            />
+            <Tab.Screen
+              name="Perfil"
+              component={PerfilScreen}
+              options={{
+                tabBarIcon: PerfilTabIcon,
+              }}
+            />
+            <Tab.Screen
+              name="Emergencia"
+              component={EmergenciaScreen}
+              options={{
+                tabBarIcon: EmergenciaTabIcon,
+              }}
+            />
+          </Tab.Navigator>
+        ) : (
+          <Stack.Navigator>
+             <Stack.Screen
               name="Login"
-              component={LoginScreen}
-              options={{ headerShown: false }}
-              // Pasa handleLogin como prop
-              initialParams={{ handleLogin }}
-            />   
-          <Stack.Screen
-            name="Registro" // Asegúrate de que este nombre coincida con el componente
-            component={RegistroScreen} // Asegúrate de que esta importación sea correcta
-          />
-          <Stack.Screen
-            name="Recuperar Contraseña" // Asegúrate de que este nombre coincida con el componente
-            component={RecuperarPasswordScreen} // Asegúrate de que esta importación sea correcta
-          />
-        </Stack.Navigator>
-      )}
+              options={{
+                headerShown: false,
+              }}
+            >
+              {/* Pasamos onLoginSuccess directamente */}
+              {props => <LoginScreen {...props} onLoginSuccess={handleLoginSuccess} />}
+            </Stack.Screen>
+            <Stack.Screen
+              name="Registro"
+              component={RegistroScreen}
+            />
+            <Stack.Screen
+              name="Recuperar Contraseña"
+              component={RecuperarPasswordScreen}
+            />
+          </Stack.Navigator>
+        )}
+      </AuthProvider>
     </NavigationContainer>
   );
 };

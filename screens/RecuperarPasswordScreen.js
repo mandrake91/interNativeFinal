@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import { Picker } from '@react-native-picker/picker';
 
 export default function RecuperarPasswordScreen() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ export default function RecuperarPasswordScreen() {
   const [errorPassword, setErrorPassword] = useState('');
   const [errorRepeatPassword, setErrorRepeatPassword] = useState('');
   const navigation = useNavigation();
+  const [selectedType, setSelectedType] = useState('tipo1');
 
   const onChange = (value, type) => {
     setFormData({ ...formData, [type]: value });
@@ -76,15 +78,14 @@ export default function RecuperarPasswordScreen() {
         errorMessage={errorRepeatPassword}
         value={formData.repeatPassword}
       />
-      <Text style={styles.label}>Pregunta de Seguridad:</Text>
         <Picker
           selectedValue={selectedType}
           onValueChange={(itemValue) => setSelectedType(itemValue)}
           style={styles.picker}
         >
-          <Picker.Item label="Tipo 1" value="tipo1" />
-          <Picker.Item label="Tipo 2" value="tipo2" />
-          <Picker.Item label="Tipo 3" value="tipo3" />
+          <Picker.Item label="¿Cual es el nombre de tu mascota?" value="tipo1" />
+          <Picker.Item label="¿Cual es tu hobby favorito?" value="tipo2" />
+          <Picker.Item label="¿Cual es tu comida favoria?" value="tipo3" />
         </Picker>
         <Input
         placeholder="Respuesta"

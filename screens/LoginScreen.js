@@ -1,18 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, Button, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
-const LoginScreen = ({ navigation, route }) => {
+const LoginScreen = ({ navigation, onLoginSuccess }) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const loginUrl = 'http://192.168.0.11:8000/api/login';
 
-  const handleLogin = () => {
-    // Aquí puedes realizar la validación del inicio de sesión y obtener el usuario
-    const user = { name: 'John Doe', email: 'john@example.com' };
+  const handleLogin = async () => {
+    try {
+      const response = await fetch(loginUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Cookie': 'XSRF-TOKEN=eyJpdiI6IlNrdjZOWVVYYnFDYVdrS2ZicDUzM0E9PSIsInZhbHVlIjoiQWZZUENBL1pFcU5EZlIrNkFwZnZMVzh4Qk9CTXFNajQyWko3VkpHdHR6RWF0L0NpM05UajY2SUJwYlM2MWN0VGdMYmcyM0EwY2Q4R21iZGtHdHRzd0N1M2w0RDlobkQxRGpvR0RVVVM3a1ZjRHRPdFhud0dYbkEvSmhYWFRmeTIiLCJtYWMiOiI0NzExMWQ1NjcxNGYyZTJhMWQzNzAxNzE5NmY3YjRlYjQ3M2QyZWMxMTA5ZmIwZDQ2MWU1MzJhMTEyY2MxZWMxIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6IkplT2xaVnMrSWVzVDd3NjZoMzNzQVE9PSIsInZhbHVlIjoiK2pSTGc3c3U2VWx1SWJVUjk3cXBndS9sVUJPN2IxOWlWWUZPSTlvUVI4VjFQMktabWxpUjU3TExVWVI4QlRxVy95WVk5OStBQ1Zac28zOUtuVjNHOEhibEhoQXBMbE1LNExWR0pHcFF1UkcwT1NNNlhsOXpsZURSQUZSQ2MzOVUiLCJtYWMiOiJjOTlkMWU0MDczNjVkZjU5ZWE4ZGRiNTBmNGQ5OWMwYThiMDZlYTk2N2ExZWY2ZGU1MzEyOTNjZTI0MGM0Y2Y3IiwidGFnIjoiIn0%3D',
+        },
+        body: JSON.stringify({
+          username: 'jeronimoledesma45450@gmail.com',
+          password: 'asdasdasd'
+        }),
+      });
 
-    // Llamar a la función onLogin pasando el usuario como parámetro
-    route.params.handleLogin(user);
+      if (!response.ok) {
+        console.log(response);
+        // En caso de que la respuesta no sea exitosa, lanzar un error o manejarlo según corresponda
+        throw new Error('Error en la solicitud de inicio de sesión.');
+      }
+
+      // Si la respuesta es exitosa, obtener los datos en formato JSON
+      const data = await response.json();
+
+      // Aquí puedes manejar la respuesta de la API como desees
+      console.log('Respuesta de inicio de sesión:', data);
+
+      // Llamar a la función onLoginSuccess para indicar que el inicio de sesión fue exitoso
+      onLoginSuccess();
+    } catch (error) {
+      console.error('Error:', error.message);
+      // Manejar el error aquí, por ejemplo, mostrar un mensaje al usuario
+    }
   };
-
 
   const handleRegister = () => {
     navigation.navigate('Registro'); // Redirigir a la pantalla RegistroScreen

@@ -12,3 +12,7 @@ export const InformesTabIcon = ({ color, size }) => (
 export const PerfilTabIcon = ({ color, size }) => (
   <MaterialCommunityIcons name="account" color={color} size={size} />
 );
+
+export const EmergenciaTabIcon = ({ color, size }) => (
+  <MaterialCommunityIcons name="police-badge-outline" size={24} color="black" />
+);
