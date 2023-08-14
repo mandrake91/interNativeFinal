@@ -1,13 +1,4 @@
-/*
-  const fetchNews = async () => {
-    try {
-      const response = await fetch('URL_DEL_BACKEND/api/noticias');
-      const data = await response.json();
-      setNews(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };*/
+
   
   import React, { useState, useEffect } from 'react';
   import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
@@ -19,51 +10,42 @@
       // Simulate the retrieval of news from the backend
       fetchNews();
     }, []);
-  
-    const fetchNews = () => {
-      // Simulate the retrieval of news from the backend
-      const fakeNews = [
-        // Sample news data
-        {
-          id: 1,
-          titulo: 'Noticia 1',
-          contenido: 'Contenido de la noticia 1...',
-          imagen: 'https://via.placeholder.com/300',
-        },
-        {
-          id: 2,
-          titulo: 'Noticia 2',
-          contenido: 'Contenido de la noticia 2...',
-          imagen: 'https://via.placeholder.com/300',
-        },
-        {
-          id: 3,
-          titulo: 'Noticia 3',
-          contenido: 'Contenido de la noticia 3...',
-          imagen: 'https://via.placeholder.com/300',
-        },
-        {
-          id: 4,
-          titulo: 'Noticia 4',
-          contenido: 'Contenido de la noticia 4...',
-          imagen: 'https://via.placeholder.com/300',
-        },
-      ];
-      setNews(fakeNews);
-    };
+ 
+    const noticiasUrl = 'http://192.168.0.11:8000/api/getNoticias';
+    
+const fetchNews = async () => {
+  try {
+    const response = await fetch(noticiasUrl, {
+      headers: {
+        Authorization: 'Bearer PDVwDJVi3A3mYb96b5HL2Wru7fLyOFZfM935BlkvqXtqujDmQjhkw6DvK7CRLhZT6vfA4p',
+      },
+    });
+
+    if (!response.ok) {
+      console.log(response);
+      throw new Error('Error en la solicitud de noticias');
+    }
+
+    const data = await response.json();
+    console.log(data);
+    setNews(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
   
     const renderNewsCard = ({ item }) => (
       <View style={styles.newsCard}>
         <Image source={{ uri: item.imagen }} style={styles.newsImage} />
         <Text style={styles.newsTitle}>{item.titulo}</Text>
-        <Text style={styles.newsContent}>{item.contenido}</Text>
+        <Text style={styles.newsContent}>{item.descripcion}</Text>
       </View>
     );
   
     return (
       <View style={styles.container}>
         <FlatList
-          data={news}
+          data={news.data}
           renderItem={renderNewsCard}
           keyExtractor={(item) => item.id.toString()}
           showsVerticalScrollIndicator={false}

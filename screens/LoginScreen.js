@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, TouchableOpacity, StyleSheet, Text } from 'react-native';
-import { useRoute, useNavigation } from '@react-navigation/native';
+//import { useRoute, useNavigation } from '@react-navigation/native';
 
 const LoginScreen = ({ navigation, onLoginSuccess }) => {
   const [email, setEmail] = React.useState('');
@@ -20,7 +20,7 @@ const LoginScreen = ({ navigation, onLoginSuccess }) => {
           password: 'asdasdasd'
         }),
       });
-
+      console.log(response);
       if (!response.ok) {
         console.log(response);
         // En caso de que la respuesta no sea exitosa, lanzar un error o manejarlo según corresponda

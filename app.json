@@ -25,6 +25,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "packagerOpts": { //agregue esto para el expo go, por ahi despues hay que sacarlo
+      "config": "metro.config.js",
+      "proxy": "http://192.168.0.11:8000"
     }
   }
 }
+
