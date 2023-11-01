@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "interFinal",
+    "slug": "interFinal",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "packagerOpts": { //agregue esto para el expo go, por ahi despues hay que sacarlo
+      "config": "metro.config.js",
+      "proxy": "http://192.168.0.11:8000"
+    }
+  }
+}
+
