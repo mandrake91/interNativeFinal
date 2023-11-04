@@ -45,6 +45,9 @@ const PerfilScreen = () => {
           <Text style={styles.buttonText}>Editar perfil</Text>
         </TouchableOpacity>
       )}
+      <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Cerrar Sesión</Text>
+        </TouchableOpacity>
     </View>
   );
 };

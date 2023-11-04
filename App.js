@@ -10,6 +10,7 @@ import PerfilScreen from './screens/PerfilScreen';
 import RegistroScreen from './screens/RegistroScreen';
 import RecuperarPasswordScreen from './screens/RecuperarPasswordScreen';
 import EmergenciaScreen from './screens/EmergenciaScreen';
+import DetalleNoticiasScreen from './screens/DetalleNoticiasScreen';
 import { NewsTabIcon, InformesTabIcon, PerfilTabIcon, EmergenciaTabIcon } from './screens/TabBarIcons';
 
 const Stack = createStackNavigator();
@@ -70,6 +71,10 @@ const App = () => {
             <Stack.Screen
               name="Registro"
               component={RegistroScreen}
+            />
+            <Stack.Screen 
+              name="DetalleNoticias" 
+              component={DetalleNoticiasScreen} 
             />
             <Stack.Screen
               name="Recuperar Contraseña"

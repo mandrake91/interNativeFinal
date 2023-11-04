@@ -20,9 +20,7 @@ const LoginScreen = ({ navigation, onLoginSuccess }) => {
           password: 'asdasdasd'
         }),
       });
-      console.log(response);
       if (!response.ok) {
-        console.log(response);
         // En caso de que la respuesta no sea exitosa, lanzar un error o manejarlo según corresponda
         throw new Error('Error en la solicitud de inicio de sesión.');
       }

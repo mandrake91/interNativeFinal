@@ -10,15 +10,23 @@ const EmergencyScreen = () => {
     Linking.openURL('tel:107');
   };
 
+  const handleCall100 = () => {
+    Linking.openURL('tel:100');
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleCall911} style={[styles.button, { backgroundColor: 'red' }]}>
-        <Text style={styles.buttonText}>LLAMAR AL 911</Text>
+        <Text style={styles.buttonText}>POLICIA</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={handleCall107} style={[styles.button, { backgroundColor: 'blue', marginTop: 20 }]}>
-        <Text style={styles.buttonText}>LLAMAR AL 107</Text>
+        <Text style={styles.buttonText}>SAME</Text>
       </TouchableOpacity>
+    
+    <TouchableOpacity onPress={handleCall100} style={[styles.button, { backgroundColor: 'red' }]}>
+      <Text style={styles.buttonText}>BOMBEROS</Text>
+    </TouchableOpacity>
     </View>
   );
 };
