@@ -14,5 +14,9 @@ export const PerfilTabIcon = ({ color, size }) => (
 );
 
 export const EmergenciaTabIcon = ({ color, size }) => (
-  <MaterialCommunityIcons name="police-badge-outline" size={24} color="black" />
+  <MaterialCommunityIcons name="police-badge-outline" size={24}/>
+);
+
+export const AdministradorTabIcon = ({ color, size }) => (
+  <MaterialCommunityIcons name="human-dolly" size={24}/>
 );

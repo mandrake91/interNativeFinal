@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const PerfilScreen = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [nombre, setNombre] = useState('John');
   const [apellido, setApellido] = useState('Doe');
+  const navigation = useNavigation();
 
   const handleSaveChanges = () => {
     // Aquí puedes guardar los cambios en el backend si es necesario
     // Por ejemplo, realizar una petición HTTP para actualizar los datos del usuario
     setIsEditing(false);
+  };
+
+  const handleLogout = () => {
+    // Aquí debes realizar la lógica para cerrar la sesión del usuario.
+    // Puedes eliminar tokens de autenticación, limpiar el almacenamiento local, etc.
+    // Luego, redirige al usuario a la pantalla de inicio de sesión.
+    navigation.navigate('Login');
   };
 
   return (
@@ -45,9 +54,9 @@ const PerfilScreen = () => {
           <Text style={styles.buttonText}>Editar perfil</Text>
         </TouchableOpacity>
       )}
-      <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Cerrar Sesión</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleLogout}>
+        <Text style={styles.buttonText}>Cerrar Sesión</Text>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -78,7 +78,7 @@ export default function RecuperarPasswordScreen() {
         errorMessage={errorRepeatPassword}
         value={formData.repeatPassword}
       />
-        <Picker
+      <Picker
           selectedValue={selectedType}
           onValueChange={(itemValue) => setSelectedType(itemValue)}
           style={styles.picker}

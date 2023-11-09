@@ -16,15 +16,15 @@ const EmergencyScreen = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleCall911} style={[styles.button, { backgroundColor: 'red' }]}>
+      <TouchableOpacity onPress={handleCall911} style={[styles.button, { backgroundColor: 'blue' }]}>
         <Text style={styles.buttonText}>POLICIA</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={handleCall107} style={[styles.button, { backgroundColor: 'blue', marginTop: 20 }]}>
+      <TouchableOpacity onPress={handleCall107} style={[styles.button, { backgroundColor: 'green', marginTop: 20 }]}>
         <Text style={styles.buttonText}>SAME</Text>
       </TouchableOpacity>
     
-    <TouchableOpacity onPress={handleCall100} style={[styles.button, { backgroundColor: 'red' }]}>
+    <TouchableOpacity onPress={handleCall100} style={[styles.button, { backgroundColor: 'red', marginTop: 20 }]}>
       <Text style={styles.buttonText}>BOMBEROS</Text>
     </TouchableOpacity>
     </View>
